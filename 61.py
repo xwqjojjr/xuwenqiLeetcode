@@ -11,22 +11,24 @@ class Solution(object):
         :type k: int
         :rtype: ListNode
         """
-        if k == 0:
-            return head
         if head == None:
             return head
-        dummy = ListNode(0)
-        dummy.next = head
-        p = dummy
-        count = 0
-        while p.next!= None:
+        if head.next == None:
+            return head
+        count = 1
+        p = head
+        while p.next:
             p = p.next
             count += 1
-        p.next = dummy.next
+        p.next = head
+        print k,count
         step = count - k%count
+        res = dummy = ListNode(0)
+        p = head
+        res.next = p
         for i in range(step):
-            print p.val
-            p  = p.next
-        head = p.next
-        p.next = None
-        return head
+            p = p.next
+            res = res.next
+        res.next = None
+        return p
+        
